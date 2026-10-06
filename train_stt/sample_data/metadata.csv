@@ -1,0 +1,6 @@
+audio_filename,transcript
+meeting_clip_01.wav,"Thanks for jumping on everyone. Today we're reviewing the local-first AI notch architecture for Nook."
+meeting_clip_02.wav,"The mascot Pip tracks user head direction and reacts with squishy spring physics."
+meeting_clip_03.wav,"We verified strict zero-telemetry boundaries and 16 kilohertz Float32 ring buffer streaming."
+meeting_clip_04.wav,"Action item assigned to Alex: benchmark sqlite-vec cosine similarity latency."
+meeting_clip_05.wav,"Meeting concluded with key architecture agreements and Obsidian vault sync."
