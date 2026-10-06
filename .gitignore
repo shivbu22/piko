@@ -4,6 +4,8 @@ node_modules/
 .pnp.js
 
 # Build outputs & packaging artifacts
+dist/
+dist-desktop/
 release/
 build/
 *.tmp
