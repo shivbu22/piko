@@ -152,6 +152,57 @@ export const NotchShell: React.FC<NotchShellProps> = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [notchState, isRecording, showSettings, showOutfitPicker, showQuickNoteInput]);
 
+  // Dynamic Electron window resize to keep desktop clean & frameless
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.desktopAPI?.setWindowSize) {
+      if (showSettings) {
+        window.desktopAPI.setWindowSize(540, 560);
+      } else if (showOutfitPicker) {
+        window.desktopAPI.setWindowSize(740, 650);
+      } else {
+        switch (notchState) {
+          case 'collapsed':
+            window.desktopAPI.setWindowSize(240, 85);
+            break;
+          case 'compact':
+            window.desktopAPI.setWindowSize(440, 115);
+            break;
+          case 'recording':
+            window.desktopAPI.setWindowSize(560, 115);
+            break;
+          case 'focus':
+            window.desktopAPI.setWindowSize(240, 85);
+            break;
+          case 'drawer':
+            window.desktopAPI.setWindowSize(740, 650);
+            break;
+          case 'chat':
+            window.desktopAPI.setWindowSize(580, 580);
+            break;
+          default:
+            window.desktopAPI.setWindowSize(440, 115);
+        }
+      }
+    }
+  }, [notchState, showSettings, showOutfitPicker]);
+
+  // Hook up Electron global hotkeys (registered in main process)
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.desktopAPI) {
+      window.desktopAPI.onRecordHotkey(() => {
+        toggleRecord();
+      });
+      window.desktopAPI.onDrawerHotkey(() => {
+        sounds.playPop();
+        setNotchState((prev) => (prev === 'drawer' ? 'compact' : 'drawer'));
+      });
+      window.desktopAPI.onChatHotkey(() => {
+        sounds.playPop();
+        setNotchState((prev) => (prev === 'chat' ? 'compact' : 'chat'));
+      });
+    }
+  }, [isRecording]);
+
   // Recording Timer
   useEffect(() => {
     if (isRecording && !isPaused) {

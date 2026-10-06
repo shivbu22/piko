@@ -47,9 +47,10 @@
   padding: 0;
 }
 
-body {
+html, body, #root {
   font-family: var(--font-sans);
-  background-color: #060709;
+  background-color: transparent;
+  background: transparent;
   color: var(--text-primary);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;

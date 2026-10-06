@@ -110,3 +110,17 @@ export interface ChatMessage {
     quote: string;
   }[];
 }
+
+declare global {
+  interface Window {
+    desktopAPI?: {
+      getPlatformInfo: () => Promise<{ platform: string; isMac: boolean; isWindows: boolean; isPackaged: boolean }>;
+      setWindowSize: (width: number, height: number) => void;
+      minimize: () => void;
+      quit: () => void;
+      onRecordHotkey: (callback: () => void) => void;
+      onDrawerHotkey: (callback: () => void) => void;
+      onChatHotkey: (callback: () => void) => void;
+    };
+  }
+}

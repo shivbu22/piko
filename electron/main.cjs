@@ -10,8 +10,8 @@ function createWindow() {
   const primaryDisplay = screen.getPrimaryDisplay();
   const { width: screenWidth } = primaryDisplay.workAreaSize;
 
-  const windowWidth = 760;
-  const windowHeight = 620;
+  const windowWidth = 440;
+  const windowHeight = 115;
   const posX = Math.round((screenWidth - windowWidth) / 2);
   const posY = 0; // Docked flush to the top bezel
 
